@@ -25,6 +25,19 @@ The project is provided in two formats for reproducibility:
     *   Perform an 80/20 train-validation split.
     *   Fine-tune the YOLOv8-nano model for 15 epochs.
     *   Run a live inference test on `image_test.png`.
+    *   ## Run Instructions & Reproducibility
+
+### **IMPORTANT: Use the .py file for testing**
+The provided **`ECE570_Final_Project_Code.py`** has been optimized for external reproduction. It removes all personal Google Drive dependencies and includes automated error handling for dataset extraction. 
+
+**To run the optimized pipeline:**
+1. Upload `ai_distracted2.zip` to your environment.
+2. Run: `python ECE570_Final_Project_Code.py`
+
+### **Note on the Jupyter Notebook (.ipynb)**
+The `.ipynb` file contains the original development logs and training curves. However, it contains hardcoded paths to the author's Google Drive (`drive.mount`). 
+**If you wish to run the Notebook version:** 
+You must manually create the directory path `/content/drive/MyDrive/` and place the `ai_distracted2.zip` file there before running, or simply refer to the `.py` script for a seamless execution.
 
 ## Authorship and Attribution
 **Author**: Mohamed Adel Elsayed Abdelmoeti Ibrahim
