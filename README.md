@@ -18,14 +18,13 @@ The project is provided in two formats for reproducibility:
 
 ## Run Instructions
 1.  **Environment Setup**: Install dependencies via `pip install ultralytics opencv-python numpy matplotlib torch`.
-2.  **Data Preparation**: Ensure your dataset is structured in the directory defined by `BASE_PATH`.
-3.  **Execution**: Run all cells in the Notebook sequentially. The script will automatically:
+2.  **Data Preparation**: Ensure your dataset is structured in the directory defined by `BASE_PATH`. **Ensure the file `image_test.png` is in the same folder as the script for the final inference test.**
+3.  **Execution**: Run all cells in the Notebook sequentially (or run the `.py` script). The script will automatically:
     *   Purge redundant classes (c6, c7, c8).
     *   Execute the illumination recovery pipeline on all images.
     *   Perform an 80/20 train-validation split.
     *   Fine-tune the YOLOv8-nano model for 15 epochs.
     *   Run a live inference test on `image_test.png`.
-    *   ## Run Instructions & Reproducibility
 
 ## Authorship and Attribution
 **Author**: Mohamed Adel Elsayed Abdelmoeti Ibrahim
@@ -36,6 +35,7 @@ The following components were engineered and implemented from scratch by the aut
 *   **Data Logic & Purging (Lines 25–50)**: The programmatic logic used to clean the dataset and remove redundant classes.
 *   **Automated Data Segregation (Lines 145–175)**: The script used to enforce a strict 80/20 split and move files into appropriate directories to prevent data leakage.
 *   **Custom Inference Script (Lines 235–285)**: The logic for mapping raw neural network outputs to human-readable telemetry and testing on unseen real-world images.
+*   **Validation Assets**: The file `image_test.png` was captured and provided by the author to serve as a "real-world" test case for evaluating model generalization.
 
 ### 2. Adapted Code
 *   **Model Initialization & Training (Lines 185–215)**: The YOLOv8 model initialization and the `model.train()` loop parameters were adapted from the [Official Ultralytics Documentation](https://docs.ultralytics.com/).
@@ -50,15 +50,3 @@ Because the dataset contains sensitive **identifiable human faces**, the author 
 2.  A few representative sample images have been included in the final PDF report purely for qualitative demonstration of the enhancement pipeline's efficacy.
 
 This statement serves as a formal declaration of the **Proprietary Data Exception** as outlined in the ECE570 course project deliverables.
-
-### **IMPORTANT: Use the .py file for testing**
-The provided **`ECE570_Final_Project_Code.py`** has been optimized for external reproduction. It removes all personal Google Drive dependencies and includes automated error handling for dataset extraction. 
-
-**To run the optimized pipeline:**
-1. Upload `ai_distracted2.zip` to your environment.
-2. Run: `python ECE570_Final_Project_Code.py`
-
-### **Note on the Jupyter Notebook (.ipynb)**
-The `.ipynb` file contains the original development logs and training curves. However, it contains hardcoded paths to the author's Google Drive (`drive.mount`). 
-**If you wish to run the Notebook version:** 
-You must manually create the directory path `/content/drive/MyDrive/` and place the `ai_distracted2.zip` file there before running, or simply refer to the `.py` script for a seamless execution.
