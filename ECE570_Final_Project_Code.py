@@ -61,7 +61,7 @@ os.makedirs(ENH_ROOT, exist_ok=True)
 def adjust_gamma(image , gamma=1.0):
     invGamma = 1.0 / gamma
     table = np.array([((i / 255.0) ** invGamma) * 255
-                      for i in np.arange(0, 256)]).astype("uint8")
+                      for i in np.arange(0,256)]).astype("uint8")
     return cv2.LUT(image, table)
 
 """
@@ -80,11 +80,11 @@ def apply_night_enhancement(img):
     return cv2.cvtColor(lab , cv2.COLOR_LAB2BGR)
 
 def enhance_split(split):
-    src_split = os.path.join(RAW_ROOT, split)
-    dst_split = os.path.join(ENH_ROOT, split)
+    src_split = os.path.join(RAW_ROOT , split)
+    dst_split = os.path.join(ENH_ROOT , split)
     os.makedirs(dst_split, exist_ok=True)
     if not os.path.exists(src_split): return
-    classes = sorted([d for d in os.listdir(src_split) if os.path.isdir(os.path.join(src_split, d))])
+    classes = sorted([d for d in os.listdir(src_split) if os.path.isdir(os.path.join(src_split , d))])
     print(f"[INFO] Initiating enhancement pipeline for split: {split}")
     for cls in classes:
         src_cls = os.path.join(src_split, cls)
@@ -95,7 +95,7 @@ def enhance_split(split):
             img = cv2.imread(img_path)
             if img is not None:
                 enhanced = apply_night_enhancement(img)
-                cv2.imwrite(os.path.join(dst_cls, os.path.basename(img_path)), enhanced)
+                cv2.imwrite(os.path.join(dst_cls , os.path.basename(img_path)) , enhanced)
 
 enhance_split("train")
 enhance_split("test")
@@ -106,7 +106,7 @@ print("[INFO] Night enhancement pipeline completed successfully.")
  structural integrity of the preprocessing pipeline across all active classes."""
 print("[INFO] Generating visual validation grid...")
 active_classes = sorted(['c0','c1','c2','c3','c4','c5','c9'])
-plt.figure(figsize=(10, 20))
+plt.figure(figsize=(10,20))
 for i, cls in enumerate(active_classes):
     src_path = os.path.join(RAW_ROOT, "train", cls)
     images = glob.glob(os.path.join(src_path, "*.jpg"))
@@ -174,7 +174,7 @@ inference test, mapping the raw class output to a human-readable telemetry log.
 """
 CLASS_MAP = {
     "c0": "Normal Driving", "c1": "Texting (Hand)", "c2": "Talking on Phone",
-    "c3": "Texting", "c4": "Talking on Phone", "c5": "Carscreen", "c9": "Distracted"
+    "c3": "Texting" , "c4": "Talking on Phone", "c5": "Carscreen", "c9": "Distracted"
 }
 
 BEST_WEIGHTS_PATH = os.path.join("driver_radar", "v2_enhanced_final", "weights", "best.pt")
