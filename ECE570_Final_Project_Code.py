@@ -132,6 +132,7 @@ print("[INFO] Validation grid saved as 'pipeline_validation.png'")
 Partitions the augmented training data into a train/validation split
 to monitor YOLOv8-nano generalization and prevent overfitting.
 """
+#Set random seed to 42 to ensure scientific reproducibility of the 80/20 
 random.seed(42)
 TRAIN_DIR = os.path.join(ENH_ROOT, "train")
 VAL_DIR   = os.path.join(ENH_ROOT, "val")
